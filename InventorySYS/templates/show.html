@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+
+{% load staticfiles %}
+
+{% block title %} Print Order {% endblock %}
+
+{% block body %}
+
+                <section>
+                    <div class="section-header">
+						<ol class="breadcrumb">
+							<li class="active">فاتورة</li>
+						</ol>
+					</div>
+					<div class="section-body">
+                        <div class="row">
+							<div class="col-lg-12">
+								<div class="card card-printable style-default-light">
+									<div class="card-head">
+										<div class="tools">
+											<div class="btn-group">
+												<a class="btn btn-floating-action btn-primary" href="javascript:void(0);" onclick="javascript:window.print();"><i class="md md-print"></i></a>
+											</div>
+										</div>
+									</div><!--end .card-head -->
+									<div class="card-body style-default-bright" id="print">
+
+										<!-- BEGIN INVOICE HEADER -->
+										<div class="row">
+											<!--<div class="col-xs-2">
+												<img src="{% static 'img/django_logo.png' %}" class="invoice_logo" width="100%">
+											</div>-->
+											<div class="col-xs-8">
+												<h1 class=" text-accent-dark " style="margin-top: 0px; color: #f70b0b">بن ظافر  <strong class="text-light" style="color: #1ab394">لمواد البناء والكهرباء</strong></h1>
+												<p class=" text-left" style="direction: rtl;">شارع الثلاثين, حارة:<br>22 مايو</p>
+											</div>
+											<div class="col-xs-4 text-right">
+												<h1 class="text-light text-default-light">فاتورة</h1>
+											</div>
+										</div><!--end .row -->
+										<!-- END INVOICE HEADER -->
+
+							
+
+										<!-- BEGIN INVOICE DESCRIPTION -->
+										<div class="row">
+											<div class="col-xs-8">
+												<h4 class="text-light">أعدت لــ</h4>
+												<address>
+													<strong>{{ order.name }}</strong><br>
+													{{ order.address }}<br>
+													<b>هاتف:</b> {{ order.phone }}
+												</address>
+											</div><!--end .col -->
+											<div class="col-xs-4" style="direction: rtl;">
+												<div class="well">
+													<div class="clearfix">
+														<div class="pull-right"> رقم الفاتورة : </div>
+														<div class="pull-left"> {{ order.id }} </div>
+													</div>
+													<div class="clearfix">
+														<div class="pull-right"> تاريخ الفاتورة : </div>
+														<div class="pull-left">  </div>
+													</div>
+													<div class="clearfix">
+														<div class="pull-right"> تاريخ البيع : </div>
+														<div class="pull-left"> {{ order.created }} </div>
+													</div>
+												</div>
+											</div><!--end .col -->
+										</div><!--end .row -->
+										<!-- END INVOICE DESCRIPTION -->
+
+										<br/>
+
+										<!-- BEGIN INVOICE PRODUCTS -->
+										<div class="row">
+											<div class="col-md-12">
+												<table class="table">
+													<thead>
+														<tr>
+															<th style="width:60px" class="text-center">كمية</th>
+															<th class="text-left">وصف</th>
+                                                            <th style="width:90px" class="text-right">سعر الواحد</th>
+															<th style="width:90px" class="text-right">سعر الكل</th>
+														</tr>
+													</thead>
+													            {% for order in order.items.all %}
+
+													<tbody>
+														<tr>
+															<td class="text-center">{{ order.quantity }}</td>
+															<td> <b>{{ order.product.id}}. {{ order.product.product_name }}</b> <br><small>{{ order.product.product_details}}</small></td>
+															<td class="text-right"> {{ order.product.price }}</td>
+															<td class="text-right">{{ order.get_cost }}</td>
+														</tr>
+														<tr>
+{% endfor %}
+
+															<td colspan="2" rowspan="4">
+																<br>
+																<p><strong><em>استلمت من قبل  __________________</em></strong></p>
+															</td>
+															<td class="text-right"></td>
+															<td class="text-right">{{ order.get_cost}}</td>
+														</tr>
+														<tr>
+															<td class="text-right hidden-border"></td>
+															<td class="text-right hidden-border"></td>
+														</tr>
+
+														<tr>
+															<td class="text-right"><strong class="text-lg text-accent">المجموع الكلي</strong></td>
+															<td class="text-right"><strong class="text-lg text-accent">{{order.get_total_cost}}</strong></td>
+														</tr>
+													</tbody>
+												</table>
+											</div><!--end .col -->
+										</div><!--end .row -->
+										<!-- END INVOICE PRODUCTS -->
+									</div><!--end .card-body -->
+								</div><!--end .card -->
+							</div><!--end .col -->
+						</div><!--end .row -->
+					</div><!--end .section-body -->
+                </section>
+            
+
+{% endblock %}

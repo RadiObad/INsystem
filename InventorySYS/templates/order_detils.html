@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block title %} All Orders {% endblock %}
+
+{% block body %}
+              
+<section>
+                    <div class="section-body">
+                        <!-- BEGIN DATATABLE 2 -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-head style-primary">
+                                        <header> الاخ : {{ order.current_year }}</header>
+                                        <div class="tools">
+                                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+                                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="datatable" class="table order-column hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>مفتاح</th>
+                                                        <th>اسم المنتج</th>
+                                                        <th>كمية</th>
+                                                        <th>سعر الواحد</th>
+                                                        <th>سعر الكل</th>
+                                                        
+                                                        <th width="150px">Buttons</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for order in order.items.all %}
+                                                        <tr class="gradeX">
+                                                            <td>{{ order.id }}</td>
+                                                            <td>{{ order.product }}</td>
+                                                            <td>{{ order.quantity }}</td>
+                                                            <td>{{ order.price }}</td>
+                                                            <td>{{ order.get_cost }}</td>
+                                                                                                                           
+                                                           
+                                                            <td>
+                                                                <a href="{% url 'delete' order.id %}" class="btn ink-reaction btn-floating-action btn-danger" onclick="return confirm('Are you sure you want to delete this?')"><i class="md md-delete"></i> </a>
+                                                                <a href="{% url 'edit' order.id %}" class="btn ink-reaction btn-floating-action btn-warning"><i class="md md-edit"></i> </a>                 
+                                                               
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                </tbody>
+                                                <tr class="gradeX">
+                                                                <td class="text-lg text-bold text-primary">
+                                                                 Total 
+                                                                </td>
+                                                                <td colspan="4"></td>
+                                                                <td class="text-bold">${{order.get_total_cost}}</td>
+                                                                
+                                                        </tr> 
+                                            </table>
+                                             <a href="{% url 'show' order.id %}" class="btn ink-reaction btn-floating-action btn-primary"><i class="md md-print"></i> </a>
+
+                                        </div><!--end .table-responsive -->
+                                    </div>   
+                                </div>       
+                            </div><!--end .col -->
+                        </div><!--end .row -->
+                        <!-- END DATATABLE 2 -->
+
+                    </div><!--end .section-body -->
+                </section>
+{% endblock %}  
