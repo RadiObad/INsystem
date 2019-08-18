@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block title %} HOME {% endblock %}
+<script type="text/javascript">
+{% block jquery %}
+
+{% include 'charts.html' %}
+{% endblock %}
+</script>
+{% block body %}
+	<section>
+		
+		<div class="section-body">
+		    <div class="card">
+		      <div class="card-body">
+		      	<div class="row">
+		      	<div class="col-sm-12"style="padding-bottom: 20px; ">
+				<button class="btn btn-primary" style="padding: 12px 16px;font-size: 16px; width: 25%"><i class="fab fa-alipay"></i> Home</button>
+				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 25%"><i class="fas fa-ad"></i> Menu</button>
+				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-trash"></i> Trash</button>
+				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-close"></i> Close</button>
+				<button style='font-size:24px'>Button <i class='fas fa-check-square'></i></button>
+
+				<i class="fab fa-accessible-icon"></i>
+				</div>
+				<div class="col-sm-12">
+				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 25%"><i class="fas fa-funnel-dollar	" style='font-size:24px; padding-right: 10px' ></i>المبيعات</button>
+				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 25%"><i class="fa fa-bars"></i> Menu</button>
+				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-trash"></i> Trash</button>
+				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-close"></i> Close</button>
+		      <!-- <a href="{% url 'home' %}" class="btn btn-primary">Go orders</a>-->
+		  			</div>
+		  			</div>
+
+		      </div>
+		    </div>
+		  </div>
+		  
+
+			<div class="row">
+			  <div class="col-sm-6">
+			    <div class="card">
+			      <div class="card-body">
+			        <h5 class="card-title">Special title treatment</h5>
+					<canvas id="myChart2" "></canvas>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="col-sm-6">
+			    <div class="card">
+			      <div class="card-body">
+			        <h5 class="card-title">Special title treatment</h5>
+					<canvas id="myChart" ></canvas>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			  
+			</div>
+
+			
+			
+
+			
+
+			
+		</div>
+
+
+
+
+	</section>
+
+
+
+
+{% endblock %}

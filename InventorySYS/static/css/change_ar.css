@@ -1,0 +1,14 @@
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 24px;
+    direction: rtl;
+    text-align: right;
+}
+.table  thead tr th{
+    text-align: right;
+}
+/* Style buttons */
+body{
+	font-family: cursive;
+}
