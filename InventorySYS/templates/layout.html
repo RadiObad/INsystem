@@ -26,7 +26,6 @@
         <link type="text/css" rel="stylesheet" href="{% static 'css/print.css' %}" />
 
      	<link type="text/css" rel="stylesheet" href="{% static 'css/change_ar.css' %}" />
-        <link type="text/css" rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}" />
 
 		<!-- END STYLESHEETS -->
 
@@ -222,7 +221,6 @@
         <script src="{% static 'js/core/DemoTableDynamic.js' %}"></script>
         <script src="{% static 'js/libs/select2/select2.min.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-        <script src="{% static 'js/libs/fontawesome/fontawesome_all.min.js' %}"></script>
 
 		<!-- END JAVASCRIPT -->
 
@@ -237,6 +235,8 @@
               
             });
         </script>
+
+        {% block javascript %}{% endblock %}
 
 	</body>
 </html>

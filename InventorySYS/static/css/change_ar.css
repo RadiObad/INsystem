@@ -17,3 +17,26 @@
 body{
 	font-family:'Tajawal', cursive;
 }
+.btn{
+	
+
+}
+
+.b{
+    font-size: 20px;
+    padding: 30px 20px; /* Some padding */
+    width: 25%;
+}
+
+
+
+}
+
+
+.gui-controls > li > a{
+	font-size: 16px
+
+}
+.menubar-inverse .gui-controls li.gui-folder > a .title {
+    color: rgba(255, 255, 255, 0.9);
+}

@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load staticfiles %}
 
 {% load widget_tweaks %}
 
@@ -10,26 +11,31 @@
 {% include 'charts.html' %}
 {% endblock %}
 </script>
+{% block javascript %}
+{% endblock %}
 {% block body %}
+
+
+
 	<section>
 		
 		<div class="section-body">
 		    <div class="card">
 		      <div class="card-body">
 		      	<div class="row">
-		      	<div class="col-sm-12"style="padding-bottom: 20px; ">
-				<button class="btn btn-primary" style="padding: 12px 16px;font-size: 16px; width: 25%"><i class="fab fa-alipay"></i> Home</button>
-				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 25%"><i class="fas fa-ad"></i> Menu</button>
-				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-trash"></i> Trash</button>
-				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-close"></i> Close</button>
+		      	<div class="col-sm-12"style="padding-bottom: 3px; ">
+				<a href="#"><button class="btn btn-info b" style=";width: 24%;><i class="fas fa-funnel-dollar "  ></i>المبيعات</button></a>	
+				<a href="#"><button class="btn  btn-default b">المبيعات</button></a>	
+				<a href="#"><button class="btn  btn-primary b">المبيعات</button></a>	
+				<a href="#"><button class="btn btn-success b">المبيعات</button></a>	
 				</div>
 
 				<div class="col-sm-12">
-				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 25%"><i class="fas fa-funnel-dollar nm" style='font-size:24px; padding-right: 10px;' ></i>المبيعات</button>
-				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 25%"><i class="fa fa-bars"></i> Menu</button>
-				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-trash"></i> Trash</button>
-				<button class="btn btn-primary"style="padding: 12px 16px;font-size: 16px;width: 24%"><i class="fa fa-close"></i> Close</button>
-		      <!-- <a href="{% url 'home' %}" class="btn btn-primary">Go orders</a>-->
+				<button class="btn b"style="width: 24%;background-color: crimson;">المبيعات</button>
+				<button class="btn btn-warning b" >المبيعات</button>
+				<button class="btn btn-danger b">المبيعات</button>
+				<button class="btn btn-link b">المبيعات</button>
+				    <!-- <a href="{% url 'home' %}" class="btn btn-primary">Go orders</a>-->
 		  			</div>
 		  			</div>
 
