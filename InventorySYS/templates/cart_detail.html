@@ -21,18 +21,18 @@
 							    <tr>	
 							    	<td>{{product.product_name}}</td>
 							    	<td>
-								 		<table>
+								 		<table style="color: red;background-color: #ccc">
 								    		<form method="post" action="{% url 'cart_add' product.id %}">
 								    			{% csrf_token %}
 								    			<tr>
-								    			<td style="color: black;background-color: #fff;">
+								    			<td >
 								    			{{item.update_quantity_form.quantity | add_class:'form-control'}}
 								    			</td>
 								    		
 								    			{{item.update_quantity_form.update}}
 								    			
 								    			<td>
-								    			<input type="submit" class="btn" style="color: black;margin-right: 10px;background-color: #fff" value="تعديل">
+								    			<input type="submit" class="btn btn-default" style="color: #000;" value="تعديل">
 								    			</td>
 								    			</tr>
 								    		</form>
@@ -47,8 +47,8 @@
 							    		{{item.total_price}}
 							    	</td>
 							    	<td>
-							    		<a href="{% url 'cart_remove' product.id%}">
-							    			Remove
+							    		<a href="{% url 'cart_remove' product.id %}" class="btn ink-reaction btn-floating-action btn-warning" onclick="return confirm('هل تريد ازالة الصنف {{ product.product_name }} من الفاتورة?')"><i class="md md-delete"></i> </a>	
+							    			
 							    		</a>
 							    	</td>
 							    </tr>
@@ -57,12 +57,12 @@
 						{% endfor %}
 					{% else %}
 						<tr >
-							<td colspan="4" style="width:100%;text-align:center;">there is no product !</td>
+							<td colspan="4" style="width:100%;text-align:center;">لم يتم ادراج اي صنف  !</td>
 						</tr>
 					{% endif %}
 		 				<tr class="total">
 							<td>
-								Total
+								المجموع
 							</td>
 							<td colspan="4"></td>
 							<td class="num">${{cart.get_total_price}}</td>
@@ -71,10 +71,15 @@
 						
 				</tbody>
 		</table>
-		<p class="text-left" ">
+		{% if cart %}
+		
 			<a href="{% url 'order_create' %}"><button class="btn btn-warning " style="padding:5px 40px;"> اصدار فاتورة</button></a>
 
-		</p>
+		
+		
+			<a href="{% url 'cart_remove_all' %}"><button class="btn btn-danger " style="padding:5px 40px; float: right;"> اعادة تعين الفاتورة </button></a>
+
+				{% endif %}
 </div>
 	</div>
 </div>

@@ -248,6 +248,12 @@ def cart_remove(request,product_id):
     return redirect('test')
 
 @login_required
+def cart_remove_all(request):
+    cart = Cart(request)
+    cart.remove_all()
+    return redirect('test')    
+
+@login_required
 def cart_detail(request):
     cart = Cart(request)
     for item in cart:
@@ -275,6 +281,7 @@ def cart_add(request,product_id):
 
 
 def order_create(request):
+    product = Product.objects.all()
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
@@ -290,9 +297,10 @@ def order_create(request):
             cart.clear()
             context = {
                 'order':Oorder,
+                'product':product
             }
             
-            return render(request,'created.html',context)
+            return redirect('home',product.id)
 
     else:
         form = OrderCreateForm()

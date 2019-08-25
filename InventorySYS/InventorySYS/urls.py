@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^add/(?P<product_id>\d+)/$',my_order.cart_add,name='cart_add'),
     url(r'^cards/$',my_order.cart_detail, name='cart_detail'),
     url(r'^remove/(?P<product_id>\d+)/$',my_order.cart_remove,name='cart_remove'),
+    url(r'^remove/$',my_order.cart_remove_all,name='cart_remove_all'),
     url(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$',my_order.product_detail,name='product_detail'),
     url(r'^create/$',my_order.order_create,name='order_create'),
     url(r'^orders/(?P<order_id>\d+)/$', my_order.order_detils, name='order_detils'),

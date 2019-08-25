@@ -1,23 +1,143 @@
-{% block title_ %}
-	CheckOut
-{% endblock title_ %}
+{% extends 'layout.html' %}
 
-{% block content %}
-		<h1 class="pds">CheckOut</h1>
-		<div class="order-info">
-			<h3>Your order</h3>
-			<ul>
-				{% for item in cart %}
-					<li>{{item.quantity}} x {{item.product.product_name}} <span>${{item.total_price}}</span></li>
-				{% endfor %}
-				
-			</ul><br>
-			<p>Total: ${{cart.get_total_price}}</p>
-		</div>
+{% load widget_tweaks %}
 
-		<form method="post" action="." class="order_form">
-			{% csrf_token %}
-			{{form.as_p}}
-			<button type="submit">Place order</button>
-		</form>
-{% endblock content %}
+{% block title %} Add Orders {% endblock %}
+
+{% block body %}
+
+                <section>
+					<div class="section-body">
+						<div class="row">
+
+							<!-- BEGIN  - FORM -->
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-head style-primary">
+										<header>اظافة صنف</header>
+										<div class="tools">
+											<a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+											<a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+										</div>
+									</div>
+									<div class="card-body">
+
+
+										<h1 class="pds">CheckOut</h1>
+										
+											<h3>Your order</h3>
+												
+												<table class="table order-column style-primary">
+												<thead>
+													<tr>
+														<th>المنتج</th>
+														<th>الكمية</th>
+														<th>سعرالوحدة</th>
+														<th>سعرالكل</th>
+														<th>حذف</th>
+													</tr>
+												</thead>
+												<tbody>	
+												{% for item in cart %}
+														{% with  product=item.product %}
+												
+												<tr>	
+												<td >	
+													 {{item.product.product_name}} <span>$</span>
+												</td>
+												<td>{{item.quantity}} </td>
+												<td>{{item.price}}</td>
+												<td>{{item.total_price}}</td>
+												<td  style="padding: 2px 8px;"><a href="{% url 'cart_remove' product.id %}" class="btn ink-reaction btn-floating-action btn-warning" onclick="return confirm('هل تريد ازالة الصنف {{ product.product_name }} من الفاتورة?')"><i class="md md-delete"></i> </a>	
+															    			</td>
+												</tr>
+
+												{% endwith %}
+												{% endfor %}
+												<tr class="total">
+															<td>
+																المجموع
+															</td>
+															<td colspan="4"></td>
+															<td class="num">${{cart.get_total_price}}</td>
+														</tr> 
+														
+														
+												</tbody>
+												</table>
+												
+											
+										
+
+										<form class="form" role="form" action="" method="post">{% csrf_token %}
+											<div class="row">
+												<div class="col-sm-4" style="float: right; text-align: right; direction: rtl;">
+													<header>معلومات الصنف</header>
+													<div class="form-group floating-label">
+														{{ form.name | add_class:'form-control' }}
+														<label for="regular2">اسم العميل </label>
+													</div>
+													<div class="form-group floating-label">
+														{{ form.phone | add_class:'form-control' }}
+														<label for="regular2">هاتف العميل</label>
+													</div>
+
+													
+													<div class="form-group floating-label">
+														{{ form.city | add_class:'form-control' }}
+														<label for="regular2">المدينة</label>
+													</div>
+												</div>
+
+
+												<div class="col-sm-8" style="float: right; text-align: right; direction: rtl;">
+													<header>.</header>
+													<div class="form-group floating-label">
+														{{ form.address | add_class:'form-control'}}
+														<label for="regular2">العنوان</label>
+													</div>
+
+													<div class="form-group floating-label">
+														{{ form.payment_option | add_class:'form-control select2-list' }}
+														<label for="textarea2">نوع البيع</label>
+													</div>
+													
+													<div class="col-md-12">
+													<hr>
+													<label class="radio-inline radio-styled col-sm-2 " style="float: right;">
+														<b>حالة الفاتورة :</b>
+													</label>
+													<div class="col-md-12">
+														<div class="row">
+                                                        {% for radio in form.order_status %}
+                                                        	<div class="col-md-2">
+                                                        		<label class="radio-inline radio-styled">
+                                                                	{{ radio }}
+                                                            	</label>
+                                                        	</div>
+                                                       		 {% endfor %}
+                                                        	</div>
+														</div>
+													</div>
+												
+												<div class="col-md-12" >
+													<hr>
+													<div class="card-actionbar-row" style=" text-align: left;">
+														<input type="submit" class="btn  btn-primary ink-reaction" value="ادخال">
+													</div>
+												</div>
+												
+											</div>
+										</form>
+
+									</div><!--end .card-body -->
+								</div><!--end .card -->
+							</div><!--end .col -->
+							<!-- END FORM - TIME ON SITE -->
+
+						</div><!--end .row -->
+					</div><!--end .section-body -->
+				</section>
+
+
+{% endblock body %}

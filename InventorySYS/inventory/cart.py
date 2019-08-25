@@ -57,8 +57,24 @@ class Cart(object):
 	def remove(self,product):
 		product_id = str(product.id)
 		if product_id in self.cart:
+			product.stock += self.cart[product_id]['quantity']
+			product.save()			
 			del self.cart[product_id]
 			self.save()
+
+	def remove_all(self):
+		product_ids = self.cart.keys()
+
+		products = Product.objects.filter(id__in=product_ids)
+		for product in products:
+			pom = str(product.id)
+			if pom in self.cart:
+				product.stock += self.cart[pom]['quantity']
+				product.save()
+			
+		self.clear()	
+
+		
 
 	def __iter__(self):
 
