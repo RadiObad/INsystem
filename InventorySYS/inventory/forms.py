@@ -58,3 +58,7 @@ class OrderCreateForm(forms.ModelForm):
     class Meta:
         model = Oorder
         fields = ('name','phone', 'address', 'payment_option','order_status', 'city')
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name', 'slug')

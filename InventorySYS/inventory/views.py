@@ -5,7 +5,7 @@ from django.views.generic import View
 from django.views.decorators.http import require_POST
 from .cart import Cart
 from .models import Order, Product, Category, OrderItem, Oorder
-from .forms import OrderForm, ProductForm, CartAddProductForm, OrderCreateForm
+from .forms import OrderForm, ProductForm, CartAddProductForm, OrderCreateForm, CategoryForm
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -143,7 +143,20 @@ def new(request):
     else:
         form = OrderForm()
         return render(request, 'new.html', {'form':form})
-
+@login_required
+def new_category(request):
+        if request.POST:
+            form = CategoryForm(POST)
+            if form.is_valid():
+                if form.save():
+                    return redirect('/', messages.success(request, 'Product was successfully created.', 'alert-success'))
+                else:
+                    return redirect('/', messages.success(request,'Data is not saved', 'alert-danger'))     
+            else:
+                return redirect('/', messages.success(request,'Form is not valid', 'alert-danger'))
+        else:
+            form = CategoryForm()
+            return render(request, 'new_category.html',{'form':form})                    
 @login_required
 def edit(request, order_id):
     order = Order.objects.get(id=order_id)
@@ -300,7 +313,9 @@ def order_create(request):
                 'product':product
             }
             
-            return redirect('home',product.id)
+            return redirect('show',Oorder.pk)
+        else:
+            return redirect('/', messages.error(request, 'Form is not valid', 'alert-danger'))    
 
     else:
         form = OrderCreateForm()

@@ -46,8 +46,8 @@
                                                            
                                                             {% if order.order_status == 'جاهز' %}
                                                                 <td><span class="badge">{{ order.order_status }}</span></td>
-                                                            {% elif order.order.order_status == 'توكد' %}
-                                                                <td><span class="badge" style="background: #ff9800"> {{ order.order.order_status }}</span></td>
+                                                            {% elif order.order_status == 'توكد' %}
+                                                                <td><span class="badge" style="background: #ff9800"> {{ order.order_status }}</span></td>
                                                             {% elif order.order_status == 'سلم' %}
                                                                 <td><span class="badge" style="background: #0c84e4"> {{ order.order_status }}</span></td>
                                                             
